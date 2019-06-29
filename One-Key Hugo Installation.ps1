@@ -33,15 +33,15 @@ Set-EnvironmentVariable -Name DocsRoot -Value $DocsRoot -Target User  # Set defa
 Set-EnvironmentVariable -Name TITLE -Value $TITLE -Target User  # Set default docs root.
 
 choco install hugo -y     	 	# Install hugo.
-hugo new site $TITLE 			  # Bulding site	
+hugo new site $env:TITLE 			  # Bulding site	
 
-cd $TITLE\themes							 # Building  themes
+cd $env:TITLE\themes							 # Building  themes
 $ThemeURL = Read-Host -Prompt "Choose a theme from 'https://themes.gohugo.io/' and paste the git URL here. (e.g. https://github.com/liuzc/LeaveIt.git)"
 
 git clone $ThemeURL
 
 echo "Configuring your site." 				# Server Configuring
-cd $DocsRoot\$TITLE
+cd $env:DocsRoot\$env:TITLE
 
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/HolgerHuo/HugoQuickInstall/master/config.toml" -OutFile config.toml			# Download Template Configuration File.
 
@@ -49,7 +49,7 @@ $DOMAIN = Read-Host -Prompt "What's your domain? (e.g. www.example.com)"
 (Get-Content config.toml) -replace 'Domain',$DOMAIN|out-file config.toml -encoding ASCII
 
 
-(Get-Content config.toml) -replace 'SiteName',$TITLE|out-file config.toml -encoding ASCII
+(Get-Content config.toml) -replace 'SiteName',$env:TITLE|out-file config.toml -encoding ASCII
 
 $LOCALE = Read-Host -Prompt "What's your language? (e.g. en-US)"
 (Get-Content config.toml) -replace 'LocaleInfo',$LOCALE|out-file config.toml -encoding ASCII
@@ -106,7 +106,7 @@ hugo new about.md #create about page
 
 hugo 		#building public version
 
-	cd $DocsRoot\$TITLE\public
+	cd $env:DocsRoot\$env:TITLE\public
 	$GITIO = Read-Host -Prompt "Insert your github git address. (e.g. https://github.com/HolgerHuo/HugoQuickInstall.git)" # adding github info
 	git init                                                                 
 	git remote add origin $GITIO
