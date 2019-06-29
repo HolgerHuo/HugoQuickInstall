@@ -2,8 +2,11 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 choco install git -y  # Install dependencies
 
 
-	
-	
+$DocsRoot = Read-Host -Prompt "Where do you want to store your Blogs? (e.g. F:\Documents\Blog)"	
+cd $DocsRoot
+$TITLE = Read-Host -Prompt "What's your websites name? (e.g. XX's Blog)"
+
+
 	function Set-EnvironmentVariable                 # Set permanent env. variable for further use like one-key push
 {
     param
@@ -25,17 +28,14 @@ choco install git -y  # Install dependencies
     [Environment]::SetEnvironmentVariable($Name, $Value, $Target)
 }
 
-$DocsRoot = Read-Host -Prompt "Where do you want to store your Blogs? (e.g. F:\Documents\Blog)"
+
 Set-EnvironmentVariable -Name DocsRoot -Value $DocsRoot -Target User  # Set default docs root.
-Set-EnvironmentVariable -Name DocsRoot -Value $TITLE -Target User  # Set default docs root.
+Set-EnvironmentVariable -Name TITLE -Value $TITLE -Target User  # Set default docs root.
 
 choco install hugo -y     	 	# Install hugo.
+hugo new site $TITLE 			  # Bulding site	
 
-cd $DocsRoot
-$TITLE = Read-Host -Prompt "What's your websites name? (e.g. XX's Blog)"
-hugo new site $TITLE 			  # Bulding site
-
-cd themes							 # Building  themes
+cd $TITLE\themes							 # Building  themes
 $ThemeURL = Read-Host -Prompt "Choose a theme from 'https://themes.gohugo.io/' and paste the git URL here. (e.g. https://github.com/liuzc/LeaveIt.git)"
 git clone $Theme 
 
