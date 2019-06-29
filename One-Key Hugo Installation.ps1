@@ -38,7 +38,7 @@ hugo new site $TITLE 			  # Bulding site
 cd $TITLE\themes							 # Building  themes
 $ThemeURL = Read-Host -Prompt "Choose a theme from 'https://themes.gohugo.io/' and paste the git URL here. (e.g. https://github.com/liuzc/LeaveIt.git)"
 $THEMEID = Read-Host -Prompt "Type the theme name (repo) here. (e.g. LeaveIt)"
-git clone $Theme master
+git clone $ThemeURL
 
 echo "Configuring your site." 				# Server Configuring
 cd $DocsRoot\$TITLE
