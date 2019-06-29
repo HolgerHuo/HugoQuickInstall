@@ -1,10 +1,7 @@
-$DependancyDetecting = Read-Host -Prompt "Have you installed all deoendencies according to the guide? (chocolatey, git)(y/n)"
-If ($DependancyDetecting -eq n) {  # Detecting dependant library. This is still pending upgrading. You may submit other better ideas about this.
-
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-choco install git -y  #execute
+choco install git -y  # Install dependencies
 
-	}Else{
+
 	
 	
 	function Set-EnvironmentVariable                 # Set permanent env. variable for further use like one-key push
@@ -104,22 +101,20 @@ $TG = Read-Host -Prompt "What's the Telegram URL? You may leave it blank"
 $QRCode = Read-Host -Prompt "What's the WeChat QRCode URL? You may leave it blank"
 (Get-Content config.toml) -replace 'QRCODEURL',$QRCode|out-file config.toml
 
+cd $DocsRoot\$TITLE\public
 hugo 		#building public version
 
-$GitHub = Read-Host -Prompt "Do you want to publish to GitHub(y/n)?"
-If ($GitHub -eq n) {  
 
-echo Your website is now finished. Visit public\index.html to see!
+echo Your website is now finished. Pushing to your GitHub. Close the window to quit.
 
-	}Else{
+	
 	cd $DocsRoot\$TITLE\public
-	$GITIO = Read-Host -Prompt "Insert your github address. (e.g. https://github.com/HolgerHuo/HugoQuickInstall)"
+	$GITIO = Read-Host -Prompt "Insert your github address. (e.g. https://github.com/HolgerHuo/HugoQuickInstall.git)" # adding github info
 	git init                                                                 
 	git remote add origin $GITIO
 	git add -A
 	git commit -m "Uploaded @ $(Get-Date)"
 	git pull origin master
 	git push -u origin master
-	}
-}
+pause
 
