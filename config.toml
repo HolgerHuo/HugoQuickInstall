@@ -1,7 +1,7 @@
 baseURL = "Domain" # Your Domain
 title = "SiteName" # Your Title
 languageCode = "LocaleInfo" # Language ID 
-hasCJKLanguage = CountChineseCharacters # Check to Count Chinese Characters
+hasCJKLanguage = true # Check to Count Chinese Characters
 theme = "ThemeID" # Your Theme Folder Name
 paginate = PagesNumber # Pages to show on homepage
 enableEmoji = true
