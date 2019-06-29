@@ -36,7 +36,6 @@ preserveTaxonomyNames = true
     author = "AUTHORNAME"                          # Author's name
     avatar = "AVATARPIC"           # Author's avatar
     subtitle = "SLOGAN"                  # Subtitle
-    cdn_url = "CDNURL"           # Base CDN URL
     home_mode = "post"
     license= 'All my articles are authorized using <a rel="license" href="LICENSEURL" target="_blank">[LICENSENAME]</a>'
 [params.social]
