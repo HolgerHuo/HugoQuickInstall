@@ -102,15 +102,14 @@ $TG = Read-Host -Prompt "What's the Telegram URL? You may leave it blank"
 $QRCode = Read-Host -Prompt "What's the WeChat QRCode URL? You may leave it blank"
 (Get-Content config.toml) -replace 'QRCODEURL',$QRCode|out-file config.toml
 
-cd $DocsRoot\$TITLE\public
-hugo 		#building public version
+hugo new about.md #create about page
 
+hugo 		#building public version
 
 echo Your website is now finished. Pushing to your GitHub. Close the window to quit.
 
-	
 	cd $DocsRoot\$TITLE\public
-	$GITIO = Read-Host -Prompt "Insert your github address. (e.g. https://github.com/HolgerHuo/HugoQuickInstall.git)" # adding github info
+	$GITIO = Read-Host -Prompt "Insert your github git address. (e.g. https://github.com/HolgerHuo/HugoQuickInstall.git)" # adding github info
 	git init                                                                 
 	git remote add origin $GITIO
 	git add -A
