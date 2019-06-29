@@ -1,7 +1,6 @@
-    cd $DocsRoot\$TITLE\public
+    cd $env:DocsRoot\$env:TITLE\public
 	hugo 		# building public version
 	
 	git add -A								# push
 	git commit -m "Uploaded @ $(Get-Date)"
-	git pull origin master
-	git push -u origin master
+	git push -u origin master -f 

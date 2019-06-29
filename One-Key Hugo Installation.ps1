@@ -112,7 +112,6 @@ hugo 		#building public version
 	git remote add origin $GITIO
 	git add -A
 	git commit -m "Uploaded @ $(Get-Date)"
-	git pull origin master
-	git push -u origin master
+	git push -u origin master -f 
 pause
 
