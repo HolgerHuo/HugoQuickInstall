@@ -1,5 +1,6 @@
-    cd $env:DocsRoot\$env:TITLE\public
-	hugo 		# building public version
+   hugo 		# building public version
+	
+   cd $env:DocsRoot\$env:TITLE\public
 	
 	git add -A								# push
 	git commit -m "Uploaded @ $(Get-Date)"
